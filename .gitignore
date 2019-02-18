@@ -1,0 +1,29 @@
+# Build and binary targets
+bin/
+build/
+*.o
+*.a
+*.so
+*.dylib
+*.out
+
+# Simulator and test artifacts
+*.log
+*.pcap
+*.csv
+*.profdata
+*.profraw
+
+# Temporary files and caches
+.DS_Store
+*.swp
+*~
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Local configuration overrides
+.env
+local_config.h
