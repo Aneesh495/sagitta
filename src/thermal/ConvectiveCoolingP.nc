@@ -76,14 +76,14 @@ implementation {
     float re = call ConvectiveCooling.computeReynoldsNumber(diameterM, filmTempC, windSpeedMps);
     float kAngle = call ConvectiveCooling.computeWindDirectionFactor(windYawDeg);
 
-    /* Forced convection: Low wind equation (Re <= 2650) */
-    float qc1 = (1.01f + 0.0372f * powf(re, 0.52f)) * kf * deltaT * kAngle;
+    /* Forced convection: Low wind equation (Re <= 2650) in SI units */
+    float qc1 = (1.01f + 1.35f * powf(re, 0.52f)) * kf * deltaT * kAngle;
 
-    /* Forced convection: High wind equation (Re > 2650) */
-    float qc2 = (0.0119f * powf(re, 0.6f)) * kf * deltaT * kAngle;
+    /* Forced convection: High wind equation (Re > 2650) in SI units */
+    float qc2 = (0.754f * powf(re, 0.6f)) * kf * deltaT * kAngle;
 
-    /* Natural convection: Still air equation */
-    float qcn = 0.0205f * powf(rho, 0.5f) * powf(diameterM, 0.75f) * powf(deltaT, 1.25f);
+    /* Natural convection: Still air equation in SI units */
+    float qcn = 3.645f * powf(rho, 0.5f) * powf(diameterM, 0.75f) * powf(deltaT, 1.25f);
 
     /* Select maximum heat dissipation mechanism */
     float qcForced = (qc1 > qc2) ? qc1 : qc2;

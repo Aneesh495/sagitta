@@ -90,8 +90,10 @@ void corridor_model_update_span(
   float kAngle = 1.194f - cosf(rad) + 0.194f * cosf(2.0f * rad) + 0.368f * sinf(2.0f * rad);
   if (kAngle < 0.2f) kAngle = 0.2f;
 
-  float qc = (1.01f + 0.0372f * powf(re, 0.52f)) * kf * deltaT * kAngle;
-  float qcn = 0.0205f * powf(rho, 0.5f) * powf(d, 0.75f) * powf(deltaT, 1.25f);
+  float qc1 = (1.01f + 1.35f * powf(re, 0.52f)) * kf * deltaT * kAngle;
+  float qc2 = (0.754f * powf(re, 0.6f)) * kf * deltaT * kAngle;
+  float qc = (qc1 > qc2) ? qc1 : qc2;
+  float qcn = 3.645f * powf(rho, 0.5f) * powf(d, 0.75f) * powf(deltaT, 1.25f);
   if (qcn > qc) qc = qcn;
 
   /* Radiative cooling */

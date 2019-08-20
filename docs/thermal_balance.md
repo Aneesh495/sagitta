@@ -27,11 +27,11 @@ $$q_c = \max(q_{c1}, q_{c2}, q_{cn})$$
 ### 2.1 Forced Convection
 For low wind velocities (Reynolds number $N_{Re} \le 2650$):
 
-$$q_{c1} = [1.01 + 0.0372 \cdot (N_{Re})^{0.52}] \cdot k_f \cdot (T_c - T_a) \cdot K_{angle}$$
+$$q_{c1} = [1.01 + 1.35 \cdot (N_{Re})^{0.52}] \cdot k_f \cdot (T_c - T_a) \cdot K_{angle}$$
 
 For high wind velocities ($N_{Re} > 2650$):
 
-$$q_{c2} = [0.0119 \cdot (N_{Re})^{0.6}] \cdot k_f \cdot (T_c - T_a) \cdot K_{angle}$$
+$$q_{c2} = [0.754 \cdot (N_{Re})^{0.6}] \cdot k_f \cdot (T_c - T_a) \cdot K_{angle}$$
 
 The Reynolds number is defined as:
 
@@ -46,7 +46,7 @@ $$K_{angle} = 1.194 - \cos(\phi) + 0.194 \cdot \cos(2\phi) + 0.368 \cdot \sin(2\
 ### 2.2 Natural Convection
 Under calm conditions ($V_w \approx 0$), natural convection prevails:
 
-$$q_{cn} = 0.0205 \cdot \rho_f^{0.5} \cdot D^{0.75} \cdot (T_c - T_a)^{1.25}$$
+$$q_{cn} = 3.645 \cdot \rho_f^{0.5} \cdot D^{0.75} \cdot (T_c - T_a)^{1.25}$$
 
 ## 3. Radiated Heat Loss ($q_r$)
 
