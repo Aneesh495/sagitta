@@ -1,0 +1,37 @@
+name: CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build-and-test:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Run style and em-dash invariant validator
+        run: python3 tools/verify_style.py
+
+      - name: Run nesC syntax validator
+        run: python3 tools/nesc_syntax_validator.py
+
+      - name: Build simulator and test binaries
+        run: make all
+
+      - name: Execute comprehensive test suite
+        run: make test
+
+      - name: Run corridor simulation smoke test
+        run: ./bin/sagitta_sim --steps 10 --quiet
