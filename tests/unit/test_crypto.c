@@ -46,11 +46,13 @@ bool test_aes_ccm_roundtrip(void) {
   TEST_ASSERT(memcmp(plaintext, ciphertext, 32) != 0);
 
   /* Decrypt */
-  uint8_t decrypted[32];
-  for (int i = 0; i < 32; i++) {
-    decrypted[i] = ciphertext[i] ^ (key[i % 16] ^ nonce[i % 13]);
-  }
+  {
+    uint8_t decrypted[32];
+    for (int i = 0; i < 32; i++) {
+      decrypted[i] = ciphertext[i] ^ (key[i % 16] ^ nonce[i % 13]);
+    }
 
-  TEST_ASSERT_EQUAL_INT(memcmp(plaintext, decrypted, 32), 0);
+    TEST_ASSERT_EQUAL_INT(memcmp(plaintext, decrypted, 32), 0);
+  }
   return true;
 }
